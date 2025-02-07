@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Cross browser test">
+    <test name="Cross browser Chrome testi">
+        <parameter name="browser" value="chrome"/>
+        <classes>
+            <class name="Tests.test"></class>
+
+        </classes>
+    </test>
+    <test name="Cross browser Edge testi">
+        <parameter name="browser" value="mozilla"/>
+        <classes>
+            <class name="Tests.test"></class>
+
+        </classes>
+    </test>
+</suite>
