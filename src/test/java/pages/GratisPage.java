@@ -14,23 +14,30 @@ public class GratisPage {
     @FindBy(xpath = "//*[@id='banner-accept-button']")
     public WebElement cokkieKabul;
 
+    @FindBy(xpath = "//*[@class='popup_close']")
+    public WebElement popUp;
     @FindBy(xpath = "//div[@class='right-content']//input[@class='search-input']")
     public WebElement searchBox;
 
-    @FindBy(xpath = "(//*[@class='label ng-star-inserted'])[4]")
+    @FindBy(xpath = "//a[.='Arama Sonuçları']")
+    public WebElement aramaSonuclari;
+
+    @FindBy(xpath = "(//h5[@class='title'])[1]")
     public WebElement markaKontrol;
 
-    @FindBy(xpath = "//h5[.='Beaulis Sürpriz Makyaj Seti']")
-    public WebElement surprizSet;
 
-    @FindBy(xpath = "//*[@class='product-title pdp-product-title ng-star-inserted']")
-    public WebElement isimBak;
 
-    @FindBy(xpath = "//app-custom-product-grid-item[1]//app-custom-media[@class='cx-product-image is-initialized']")
-    public WebElement yanlisUrun;
+    @FindBy(xpath = "(//*[@class='product-cards'])[1]")
+    public WebElement ilkUrun;
+
+
+
+    @FindBy(xpath = "//*[@class='add-to-basket round-btns fat']")
+    public WebElement sepeteEkleButonu;
 
     @FindBy(xpath = "//*[@class='add-btns add-to-fav ng-star-inserted']")
     public WebElement favEkle;
+
 
 
     @FindBy(xpath = "//div[@class='alert alert-warning ng-star-inserted']/div[@class='container']")

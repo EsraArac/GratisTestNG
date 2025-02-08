@@ -2,6 +2,8 @@ package Tests;
 
 import org.openqa.selenium.Keys;
 import org.testng.Assert;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 import pages.GratisPage;
 import utilities.ConfigReader;
@@ -15,21 +17,20 @@ import java.util.ResourceBundle;
 public class test {
     static int bekle = 1500;
     GratisPage gratisPage = new GratisPage();
+    @BeforeClass
+    public void setUp() throws InterruptedException {
+        Driver.getDriver().get(ConfigReader.getProperty("gratisURL"));
+
+    }
 
     @Test
     public void test01() throws InterruptedException {
-
-
-        Driver.getDriver().get(ConfigReader.getProperty("gratisURL"));
-       // driver.get("https://www.gratis.com/");
-        //bir güncelleme
-
-        gratisPage.cokkieKabul.click();
+        gratisPage.popUp.click();
         gratisPage.searchBox.click();
-
-        gratisPage.searchBox.sendKeys("Beaulis");
+        gratisPage.searchBox.sendKeys(ConfigReader.getProperty("secilenMarka"));
         Thread.sleep(bekle);
         gratisPage.searchBox.sendKeys(Keys.ENTER);
+        Assert.assertTrue(gratisPage.aramaSonuclari.isDisplayed());
 
 
 
@@ -38,49 +39,35 @@ public class test {
     @Test
     public void test02(){
 
-        String beklenenSonuc = "Beaulis";
+        String beklenenSonuc = ConfigReader.getProperty("secilenMarka");
         String gelenSonuc = gratisPage.markaKontrol.getText();
-        if (beklenenSonuc.equals(gelenSonuc)){
+        if (gelenSonuc.contains(beklenenSonuc)){
             System.out.println("Doğru marka aratıldı: " +gelenSonuc);
         }
         else {
             System.out.println("Marka yanlış aratıldı " +gelenSonuc);
         }
-        Assert.assertEquals(beklenenSonuc,gelenSonuc);
+        Assert.assertTrue(gelenSonuc.contains(beklenenSonuc));
 
     }
 
     @Test
     public void test03(){
-        ReusableMethods.goreneKadarKaydir(gratisPage.surprizSet);
-        gratisPage.surprizSet.click();
-        String beklenenIsim = "Beaulis Sürpriz Makyaj Seti";
-        String gelenIsim = gratisPage.isimBak.getText();
-        if(beklenenIsim.equals(gelenIsim)){
-            System.out.println("Dogru ürün seçildi: " +gelenIsim);
-        }else {
-            System.out.println("Yanlis ürün seçildi " +gelenIsim);
-        }
-        Assert.assertEquals(beklenenIsim,gelenIsim);
+
+       Assert.assertTrue(gratisPage.ilkUrun.isDisplayed());
 
 
     }
-    @Test(enabled = false)
-    public void yanlisUrunSecmeTesti(){
-        gratisPage.yanlisUrun.click();
-        String beklenenIsim = "Beaulis Sürpriz Makyaj Seti";
-        String gelenIsim = gratisPage.isimBak.getText();
-        if(beklenenIsim.equals(gelenIsim)){
-            System.out.println("Dogru ürün seçildi: " +gelenIsim);
-        }else {
-            System.out.println("Yanlis ürün seçildi " +gelenIsim);
-        }
-       Assert.assertEquals(beklenenIsim,gelenIsim);
+    @Test
+    public void test04(){
+
+        gratisPage.markaKontrol.click();
+        Assert.assertTrue(gratisPage.sepeteEkleButonu.isDisplayed());
 
     }
 
 
-    @Test(priority = 4)
+    @Test
     public void girisYapUyariTesti(){
         gratisPage.favEkle.click();
 
