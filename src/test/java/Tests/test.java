@@ -22,6 +22,7 @@ public class test {
 
         Driver.getDriver().get(ConfigReader.getProperty("gratisURL"));
        // driver.get("https://www.gratis.com/");
+        //bir güncelleme
 
         gratisPage.cokkieKabul.click();
         gratisPage.searchBox.click();
