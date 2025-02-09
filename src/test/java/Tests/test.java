@@ -71,7 +71,7 @@ public class test {
     public void girisYapUyariTesti(){
         //son adımda favori butonuna tıklanması gerekir
 
-
+        gratisPage.favEkle.click();
         String uyari =gratisPage.girisYapUyarisi.getText();
         if (gratisPage.girisYapUyarisi.isDisplayed()){
             System.out.println("Giris yapılmamış--> " +uyari);
