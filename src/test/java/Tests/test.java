@@ -70,7 +70,7 @@ public class test {
     @Test
     public void girisYapUyariTesti(){
         //son adımda favori butonuna tıklanması gerekir
-        gratisPage.favEkle.click();
+
 
         String uyari =gratisPage.girisYapUyarisi.getText();
         if (gratisPage.girisYapUyarisi.isDisplayed()){
